@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class WorkOrderItem extends Model
 {
     use HasFactory;
+
+    public function workOrder()
+    {
+        return $this->belongsTo(WorkOrder::class, 'work_order_id', 'id');
+    }
+
+    public function workOrderItemDetails()
+    {
+        return $this->hasMany(WorkOrderItemDetail::class, 'work_order_item_id', 'id');
+    }
 }

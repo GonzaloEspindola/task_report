@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ResourceStatus extends Model
 {
     use HasFactory;
+
+    protected $table = 'resource_status';
 }
