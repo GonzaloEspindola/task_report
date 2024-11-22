@@ -22,6 +22,11 @@ class ReportController extends Controller
             $taskData = $tasks->map(function ($task) {
                 $workOrder = $task->workOrderItemDetail->workOrderItem->workOrder ?? null;
                 $resource = $task->resource;
+
+                $purchaseOrderId = DB::table('purchase_order')
+                ->where('work_order_id', $workOrder->id ?? null)
+                ->where('resource_id', $task->resource_id_assigned)
+                ->value('id');
     
                 return [
                     'resource_name'   => $resource ? "{$resource->firstname} {$resource->lastname}" : 'N/A',
@@ -31,7 +36,7 @@ class ReportController extends Controller
                     'unit_price'      => $task->taskCounts->sum('unit_price') ?? 0,
                     'quantity'        => $task->taskCounts->sum('count') ?? 0,
                     'amount'          => $task->taskCounts->sum(fn($tc) => $tc->unit_price * $tc->count) ?? 0,
-                    'work_order_number' => $workOrder->id ?? 'N/A',
+                    'work_order_number' => $purchaseOrderId ?? 'N/A',
                 ];
             });
     
