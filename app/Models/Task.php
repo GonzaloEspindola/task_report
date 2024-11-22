@@ -18,7 +18,7 @@ class Task extends Model
 
     public function workOrderItemDetail()
     {
-        return $this->belongsTo(WorkOrderItemDetail::class, 'work_order_item_detail', 'id');
+        return $this->belongsTo(WorkOrderItemDetail::class, 'work_order_item_detail_id', 'id');
     }
 
     public function taskCounts()
