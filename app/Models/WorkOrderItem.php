@@ -9,6 +9,8 @@ class WorkOrderItem extends Model
 {
     use HasFactory;
 
+    protected $table = 'work_order_item';
+
     public function workOrder()
     {
         return $this->belongsTo(WorkOrder::class, 'work_order_id', 'id');

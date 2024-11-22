@@ -9,6 +9,8 @@ class WorkOrder extends Model
 {
     use HasFactory;
 
+    protected $table = 'work_order';
+
     public function workOrderItems()
     {
         return $this->hasMany(WorkOrderItem::class, 'work_order_id', 'id');
