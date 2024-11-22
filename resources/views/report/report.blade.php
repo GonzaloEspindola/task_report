@@ -4,7 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Tareas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        td {
+            color: #555;
+        }
+    </style>
 </head>
+
 <body>
     <table>
         <thead>
@@ -21,23 +53,19 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($taskData as $index => $task)
+            @foreach ($taskData as $index => $task)
                 <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $task['resource_name'] }}</td>
-                <td>{{ $task['project_id'] }}</td>
-                <td>{{ $task['work_order_date'] }}</td>
-                <td>{{ $task['task_number'] }}</td>
-                <td>{{ number_format($task['unit_price'], 2) }}</td>
-                <td>{{ number_format($task['quantity'], 2) }}</td>
-                <td>{{ number_format($task['amount'], 2) }}</td>
-                <td>{{ $task['work_order_number'] }}</td>
-            </tr>
-            @empty
-                <tr>
-                    <td colspan="9" class="no-results">No se encontraron resultados</td>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $task['resource_name'] }}</td>
+                    <td>{{ $task['project_id'] }}</td>
+                    <td>{{ $task['work_order_date'] }}</td>
+                    <td>{{ $task['task_number'] }}</td>
+                    <td>{{ number_format($task['unit_price'], 2) }}</td>
+                    <td>{{ number_format($task['quantity'], 2) }}</td>
+                    <td>{{ number_format($task['amount'], 2) }}</td>
+                    <td>{{ $task['work_order_number'] }}</td>
                 </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
 </body>
